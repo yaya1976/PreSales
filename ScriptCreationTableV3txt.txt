@@ -1,0 +1,98 @@
+					
+drop table client
+drop table souscrire	
+drop table SGSS_Services_already_provided						
+drop table SGSS Services							
+drop table avoir
+drop table detenir
+drop table Customer_Priority
+drop table Local_Asset_managed_custodied
+						
+											
+				
+							
+							
+CREATE TABLE Client ( ID_BRD INTEGER, 							
+		                      Client_Type VARCHAR (600),					
+		                      Date_Last_RFP DATE,					
+		                      SGSS_Prospection_Universe VARCHAR (900),					
+		                      Overview_customer_activity VARCHAR (900),					
+		                      Total_global_firm_AUM_k_Eur FLOAT,					
+		                      Number_of_Funds INTEGER (200),
+                                      PRIMARY KEY (ID_BDR);				
+							
+							
+
+CREATE TABLE SOUSCRIRE ( ID_BRD INTEGER, 							
+		                         ID_Service INTEGER,
+                                         PRIMARY KEY (ID_BDR),
+                                         FOREIGN KEY (ID_Service) REFERENCES List_of_SGSS_Services;				
+							
+					
+							
+							
+							
+CREATE TABLE SGSS_Services_already_provided ( ID_BRD INTEGER, 							
+		                                             ID_Service INTEGER,
+                                                             Type VARCHAR (900),
+                                                             ID_Country VARCHAR (600),
+                                                             Departement_Banking VARCHAR (900),
+                                                             Outsourced VARCHAR (900),
+                                                             IT_System VARCHAR (900),
+                                                             PRIMARY KEY (ID_BDR),
+                                                             FOREIGN KEY (ID_Service) REFERENCES List_of_SGSS_Services;					
+							
+							
+							
+CREATE TABLE List_of_SGSS_services ( ID_Service INTEGER,					
+		                                 Name_Service VARCHAR (800),
+                                                 PRIMARY KEY (ID_Service);
+                                            				
+							
+				
+							
+							
+							
+CREATE TABLE AVOIR  ( ID_BRD INTEGER,							
+		                      ID_Contact INTEGER,					
+		                      ID_Priority INTEGER,
+                                      PRIMARY KEY (ID_BDR),
+                                      FOREIGN KEY (ID_Contact) REFERENCES Contact,
+                                      FOREIGN KEY (ID_Priority) REFERENCES Customer_Priority;					
+	
+						
+							
+							
+CREATE TABLE DETENIR  ( ID_BRD INTEGER,							
+		                        ID_Country VARCHAR (300),	
+                                        PRIMARY KEY (ID_BDR);
+                                        FOREIGN KEY (ID_Country) REFERENCES Local_Asset_Managed_Custodied				
+							
+			
+							
+							
+							
+CREATE TABLE Customer_Priority	(ID_Priority INTEGER,									
+		                                      Name_of_Priority VARCHAR (700),					
+		                                      Customer_need_description VARCHAR (800),
+                                                      PRIMARY KEY (ID_Priority);				
+							
+							
+
+
+
+							
+							
+CREATE TABLE Local_Asset_Managed_Custodied  ( ID_BRD INTEGER,							
+		                                              ID_Country VARCHAR (300), 
+                                                              Type VARCHAR (400),
+                                                              ID_Asset_Class VARCHAR (900),
+                                                              Name_Asset VARCHAR (800),					
+		                                              Total_local_firm_AUM_k_Eur FLOAT,					
+		                                              Amount_Local_Asset_custodied_by_country FLOAT,					
+		                                              Competitors_Current custodians_Depositaries_fund_administrators VARCHAR (800),					
+		                                              Amount_Local_Asset_custodied_by_competitors FLOAT,
+                                                              PRIMARY KEY (ID_BDR);
+                                                              
+                                                             				
+							
